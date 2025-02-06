@@ -1,0 +1,37 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_tags %}
+{% load custom_filter %}
+{% load replace_filter %}
+
+{% block title %}
+Some_news
+{% endblock title %}
+
+{% block content %}
+
+   {% if some_news %}
+       <table>
+           <tr>
+               <td><h4>Заголовок</h4></td>
+               <td><h4>Дата создания</h4></td>
+               <td><h4>Текст</h4></td>
+               <td><h4>Категория</h4></td>
+
+
+           </tr>
+
+
+           <tr>
+               <td>{{ some_news.name }}</td>
+               <td>{{ some_news.time_in|date:'d M Y'}}</td>
+               <td>{{ some_news.text}}</td>
+               <td>{{ some_news.category.name }}</td>
+
+
+           </tr>
+       </table>
+   {% else %}
+       <h2>Новостей нет!</h2>
+   {% endif %}
+{% endblock content %}
