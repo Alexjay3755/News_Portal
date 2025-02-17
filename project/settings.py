@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # подключаем ещё приложения
+    'fpages',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'simpleapp'
+    'simpleapp',
+    'django_filters',
+
 
 ]
 

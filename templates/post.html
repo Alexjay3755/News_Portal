@@ -5,28 +5,28 @@
 {% load replace_filter %}
 
 {% block title %}
-Some_news
+Post
 {% endblock title %}
 
 {% block content %}
 
-   {% if some_news %}
+   {% if post %}
        <table>
            <tr>
                <td><h4>Заголовок</h4></td>
                <td><h4>Дата создания</h4></td>
                <td><h4>Текст</h4></td>
-               <td><h4>Категория</h4></td>
+
 
 
            </tr>
 
 
            <tr>
-               <td>{{ some_news.name }}</td>
-               <td>{{ some_news.time_in|date:'d M Y'}}</td>
-               <td>{{ some_news.text}}</td>
-               <td>{{ some_news.category.name }}</td>
+               <td>{{ post.title }}</td>
+               <td>{{ post.time_in|date:'d M Y'}}</td>
+               <td>{{ post.text}}</td>
+
 
 
            </tr>
