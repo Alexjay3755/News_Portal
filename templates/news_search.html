@@ -11,17 +11,18 @@ Posts
 {% endblock title %}
 
 
+
+
 {% block content %}
 
-   <h1>Поиск новостей:</h1>
-<!--   <input type="date">-->
+<!--<button> <a href="sign/upgrade/">Стать автором</a> </button>-->
 
-   {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
-   <form action="" method="get">
-       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+   <h1>Поиск новостей:</h1>
+
+
+
+    <form action="" method="get">
        {{ filterset.form.as_p }}
-       {# Добавим кнопку отправки данных формы #}
-<!--       <input type="time_in" value="2025-02-12" />-->
        <input type="submit" value="Найти" />
    </form>
 
@@ -56,7 +57,7 @@ Posts
        </table>
 
    {% else %}
-       <h2>Постов нет!</h2>
+       <h2>Не найдено!</h2>
    {% endif %}
 
    {% if page_obj.has_previous %}
@@ -77,6 +78,10 @@ Posts
            <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
        {% endif %}
    {% endif %}
+    {% if is_not_authors %}
+    <button> <a href="sign/upgrade/">Стать автором</a> </button>
+    {% endif %}
 
 
 {% endblock content %}
+
