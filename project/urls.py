@@ -11,4 +11,6 @@ urlpatterns = [
 
     path('', include('protect.urls')),
     path('', include('simpleapp.urls')),
+    path('', include('sign.urls')),
+    path('appointments/', include(('appointment.urls', 'appointments'), namespace='appointments')),
 ]

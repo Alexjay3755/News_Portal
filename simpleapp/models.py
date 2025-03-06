@@ -28,6 +28,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique = True)
+    subscribers = models.ManyToManyField(User, blank=True, related_name='categories')
 
     def __str__(self):
         return self.name
@@ -53,8 +54,12 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
 
+    # def get_absolute_url(self):
+    #     return reverse('post_detail', args=[str(self.pk)])
+
+
     def get_absolute_url(self):
-        return reverse('post_detail', args=[str(self.pk)])
+        return f'/post/{self.id}'
 
     def like(self):
         self.rating += 1
