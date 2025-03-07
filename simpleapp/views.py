@@ -1,5 +1,4 @@
 from gc import get_objects
-
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -8,7 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from pyexpat.errors import messages
 from unicodedata import category
 from django_filters.rest_framework import FilterSet, filters
-
+from django.shortcuts import render, reverse, redirect
+from django.views import View
 from .filters import PostFilter
 from .forms import PostForm
 from .models import Posts, Category
@@ -34,16 +34,6 @@ class NewsSearch(LoginRequiredMixin, ListView):
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['is_not_authors'] = not self.request.user.groups.filter(name = 'authors').exists()
         return context
-
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     self.filterset = PostFilter(self.request.GET, queryset)
-    #     return self.filterset.qs
-    #
-    # def get_context_datat(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['filterset'] = self.filterset
-    #     return context
 
 
 class PostsDetail(DetailView):
@@ -76,10 +66,11 @@ class NewsCreate(CreateView):
 
 
 class ArticlesUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
+    permission_required = ('simpleapp.add_posts', 'simpleapp.change_posts')
     form_class = PostForm
     model = Posts
     template_name = 'articles_edit.html'
-    permission_required = ('simpleapp.add_posts', 'simpleapp.change_posts')
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -102,23 +93,32 @@ class NewsUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
 
 
 # Представление удаляющее товар.
-class ArticlesDelete(DeleteView):
+class ArticlesDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('simpleapp.add_posts', 'simpleapp.change_posts')
     model = Posts
     template_name = 'post_delete.html'
     success_url = reverse_lazy('news_search')
 
 
-class NewsDelete(DeleteView):
+class NewsDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('simpleapp.add_posts', 'simpleapp.change_posts')
     model = Posts
     template_name = 'post_delete.html'
     success_url = reverse_lazy('news_search')
 
 
 
-class BaseRegisterView(CreateView):
-    model = User
-    form_class = BaseRegisterForm
-    success_url = '/'
+class PostsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'make_appointment.html', {})
+
+    def post(self, request, *args, **kwargs):
+        post = Posts(
+            author=request.POST['author'],
+            title=request.POST['title'],
+        )
+        post.save()
+        return redirect('appointments:make_appointment')
 
 
 @login_required
@@ -128,31 +128,6 @@ def upgrade_me(request):
     if not request.user.groups.filter(name='authors').exists():
         authors_group.user_set.add(user)
     return redirect('/')
-
-
-from django.shortcuts import render, reverse, redirect
-from django.views import View
-from django.core.mail import mail_admins  # импортируем функцию для массовой отправки писем админам
-from datetime import datetime
-
-from .models import Posts
-from django.template.loader import render_to_string
-
-
-class PostsView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'make_appointment.html', {})
-
-    def post(self, request, *args, **kwargs):
-        post = Posts(
-            # date=datetime.strptime(request.POST['date'], '%Y-%m-%d'),
-            author=request.POST['author'],
-            title=request.POST['title'],
-        )
-        post.save()
-
-        return redirect('appointments:make_appointment')
-
 
 class CategoryListView(NewsSearch):
     model = Posts
