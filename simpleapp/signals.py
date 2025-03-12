@@ -5,8 +5,11 @@ from django.core.mail import mail_managers, EmailMultiAlternatives
 from django.db.models.signals import post_delete
 from django.template.loader import render_to_string
 from django.conf import settings
-
+# from .tasks import hello
 from .models import Posts, PostCategory
+from .tasks import create_news_task
+
+
 
 def send_notifications(preview, pk, title, subscribers):
     html_content = render_to_string(
@@ -25,6 +28,9 @@ def send_notifications(preview, pk, title, subscribers):
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
 
+
+
+
 @receiver(m2m_changed, sender=PostCategory)
 def notify_about_new_post(sender, instance, **kwargs):
     if kwargs['action'] == 'post_add':
@@ -40,7 +46,10 @@ def notify_about_new_post(sender, instance, **kwargs):
 
 
 
-
+@receiver(m2m_changed, sender=PostCategory)
+def notify_about_new_post(sender, instance, **kwargs):
+    if kwargs['action'] == 'post_add':
+        create_news_task.delay(instance.pk)
 
 
 

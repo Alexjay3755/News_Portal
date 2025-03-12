@@ -20,7 +20,7 @@ from .forms import BaseRegisterForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-
+from .tasks import create_news_task
 
 class NewsSearch(LoginRequiredMixin, ListView):
     model = Posts
@@ -50,6 +50,7 @@ class ArticlesCreate(CreateView):
     def form_valid(self, form):
         post = form.save(commit=False)
         post.type_post = 'A'
+        # create_news_task.delay(post.pk)
         return super().form_valid(form)
 
 
@@ -61,6 +62,7 @@ class NewsCreate(CreateView):
     def form_valid(self, form):
         post = form.save(commit=False)
         post.type_post = 'N'
+        # create_news_task.delay(post.pk)
         return super().form_valid(form)
 
 
@@ -153,3 +155,14 @@ def subscribe(request, pk):
 
     message = 'Вы успешно подписались на рассылку новостей категории..Ура!!..'
     return render(request, 'news/subscribe.html', {'category': category, 'message': message})
+
+
+
+# from django.http import HttpResponse
+# from django.views import View
+# from .tasks import hello
+#
+# class dexView(View):
+#     def get(self, request):
+#         hello.delay()
+#         return HttpResponse('Hello!')
