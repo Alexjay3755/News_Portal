@@ -53,12 +53,3 @@ def notify_about_new_post(sender, instance, **kwargs):
 
 
 
-# @receiver(post_delete, sender=Posts)
-# def notify_managers_appointment_canceled(sender, instance, **kwargs):
-#     subject = f'{instance.client_name} has canceled his appointment!'
-#     mail_managers(
-#         subject=subject,
-#         message=f'Canceled appointment for {instance.date.strftime("%d %m %Y")}',
-#     )
-#
-#     print(subject)
