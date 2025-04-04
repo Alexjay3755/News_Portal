@@ -54,10 +54,13 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
 
-
-
     def get_absolute_url(self):
         return f'/post/{self.id}'
+
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs) # сначала вызываем метод родителя, чтобы объект сохранился
+        cache.delete(f'posts-{self.pk}') # затем удаляем его из кэша, чтобы сбросить его
 
     def like(self):
         self.rating += 1
@@ -91,3 +94,19 @@ class Comment(models.Model):
         self.save()
 
 
+from django.core.cache import cache
+
+
+class Post(models.Model):
+    name = models.CharField(max_length=200)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name} {self.quantity}'
+
+    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+        return f'/products/{self.id}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # сначала вызываем метод родителя, чтобы объект сохранился
+        cache.delete(f'product-{self.pk}')  # затем удаляем его из кэша, чтобы сбросить его
