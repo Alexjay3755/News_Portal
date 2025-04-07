@@ -1,2 +1,5 @@
 .env
 .gitignore
+errors.log
+general.log
+security.log

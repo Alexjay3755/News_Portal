@@ -1,6 +1,9 @@
+from django.core.cache import cache
 from django.urls import path
+from django.views.decorators.cache import cache_page
+
 from .views import (
-    PostsDetail, ArticlesCreate, NewsUpdate, NewsDelete, subscribe,
+    PostDetail, ArticlesCreate, NewsUpdate, NewsDelete, subscribe,
     NewsSearch, NewsCreate, ArticlesDelete, ArticlesUpdate, CategoryListView
 )
 from django.urls import path
@@ -8,7 +11,9 @@ from .views import upgrade_me
 
 urlpatterns = [
 
-    path('post/<int:pk>/', PostsDetail.as_view(), name='post_detail'),
+    path('post/<int:pk>/', PostDetail.as_view(), name='post_detail'),
+    # path('post/<int:pk>/', cache_page(60*5)(PostsDetail.as_view(), name='post_detail')),
+    # path('posts/', cache_page(60)(NewsSearch.as_view(), name='news_search')),
     path('posts/', NewsSearch.as_view(), name='news_search'),
 #
 #

@@ -52,9 +52,8 @@ INSTALLED_APPS = [
     # 'simpleapp',
     'simpleapp.apps.SimpleappConfig',
     'django_filters',
-    'appointment',
-    'django_apscheduler',
 
+    'django_apscheduler',
 
     'allauth',
     'allauth.account',
@@ -79,6 +78,10 @@ MIDDLEWARE = [
 
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    # # кеширование всегосайтф целиком
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+
 ]
 
 ROOT_URLCONF = 'project.urls'

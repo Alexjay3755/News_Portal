@@ -6,7 +6,7 @@ from django.db.models.signals import post_delete
 from django.template.loader import render_to_string
 from django.conf import settings
 # from .tasks import hello
-from .models import Posts, PostCategory
+from .models import Post, PostCategory
 from .tasks import create_news_task
 
 
