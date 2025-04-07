@@ -9,8 +9,8 @@
         <input type="submit" value="Выйти">
     </form>
 
-        {% if is_not_authors %}
-        <button> <a href="sign/upgrade/">Стать автором</a> </button>
-        {% endif %}
+    {% if is_not_authors %}
+        <button><a href="{% url 'upgrade' %}">Стать автором</a> </button>
+    {% endif %}
 
 {% endblock %}
