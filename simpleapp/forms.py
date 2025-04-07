@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Posts
+from .models import Post
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
     text = forms.CharField(min_length=20)
 
     class Meta:
-        model = Posts
+        model = Post
         fields = ['title', 'text', 'category', 'author']
 
     def clean(self):

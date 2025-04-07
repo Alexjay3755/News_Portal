@@ -7,14 +7,14 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 
 from django.conf import settings
-from simpleapp.models import Posts, Category, PostCategory
+from simpleapp.models import Post, Category, PostCategory
 import time
 from celery import shared_task
 
 
 @shared_task
 def create_news_task(pk):
-    posts = Posts.objects.get(id=pk)
+    posts = Post.objects.get(id=pk)
     categories = posts.category.all()
 
 
@@ -46,7 +46,7 @@ def create_news_task(pk):
 def my_job():
     today = datetime.now()
     last_week = today - timedelta(days=7)
-    posts = Posts.objects.filter(time_in__gte=last_week)
+    posts = Post.objects.filter(time_in__gte=last_week)
     categories = set(posts.values_list('category__name', flat=True))
     subscribers = set(Category.objects.filter(name__in=categories).values_list('subscribers__email', flat=True))
 

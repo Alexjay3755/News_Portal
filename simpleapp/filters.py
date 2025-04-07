@@ -1,7 +1,7 @@
 
 from django_filters.widgets import RangeWidget
 
-from .models import Posts
+from .models import Post
 import django_filters
 
 class PostFilter(django_filters.FilterSet):
@@ -10,7 +10,7 @@ class PostFilter(django_filters.FilterSet):
 
     class Meta:
 
-       model = Posts
+       model = Post
        fields = {
            'title': ['icontains'] ,
            'author': ['exact'],

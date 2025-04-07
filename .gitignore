@@ -1,2 +1,6 @@
 .env
 .gitignore
+errors.log
+general.log
+security.log
+db.sqlite3

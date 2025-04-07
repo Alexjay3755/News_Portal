@@ -52,9 +52,8 @@ INSTALLED_APPS = [
     # 'simpleapp',
     'simpleapp.apps.SimpleappConfig',
     'django_filters',
-    'appointment',
-    'django_apscheduler',
 
+    'django_apscheduler',
 
     'allauth',
     'allauth.account',
@@ -79,6 +78,10 @@ MIDDLEWARE = [
 
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    # # кеширование всегосайтф целиком
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -221,6 +224,7 @@ CACHES = {
 }
 
 
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -279,16 +283,19 @@ LOGGING = {
             'level': 'INFO',
             'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
-            'formatter': 'simple4'
+            'formatter': 'simple4',
+            'filename': 'logs/general.log',
         },
         'errors.log': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'formatter': 'simple5'
+            'formatter': 'simple5',
+            'filename': 'logs/errors.log',
         },
         'security.log': {
             'class': 'logging.FileHandler',
-            'formatter': 'simple6'
+            'formatter': 'simple6',
+            'filename': 'logs/security.log',
         },
         'mail_admins': {
             'level': 'ERROR',
@@ -299,15 +306,16 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console1', 'console2', 'console3','general.log'],
+            'handlers': ['console1', 'console2', 'console3', 'general.log'],
             'propagate': True,
-        },
-        'django.security': {
-            'handlers': ['security.log',],
-            'propagate': False,
         },
         'django.request': {
             'handlers': ['errors.log', 'mail_admins',],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.server': {
+            'handlers': ['errors.log', 'mail_admins', ],
             'level': 'ERROR',
             'propagate': False,
         },
@@ -321,11 +329,9 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'django.server': {
-            'handlers': ['errors.log', 'mail_admins',],
-            'level': 'ERROR',
+        'django.security': {
+            'handlers': ['security.log', ],
             'propagate': False,
         },
     },
-
 }
