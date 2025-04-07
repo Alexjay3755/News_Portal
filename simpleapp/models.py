@@ -52,9 +52,6 @@ class Post(models.Model):
     text = models.TextField()
     rating = models.IntegerField(default=0)
 
-    # @property
-    # def on_stock(self):
-    #     return self.rating > 0
 
     def __str__(self):
         return self.title

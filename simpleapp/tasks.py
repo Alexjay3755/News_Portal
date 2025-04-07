@@ -1,21 +1,16 @@
 from datetime import datetime, timedelta
-
-from celery import shared_task
 from django.core.mail import EmailMultiAlternatives
-from django.db.models.signals import m2m_changed
-from django.dispatch import receiver
 from django.template.loader import render_to_string
 
 from django.conf import settings
-from simpleapp.models import Post, Category, PostCategory
-import time
+from simpleapp.models import Post, Category
 from celery import shared_task
 
 
 @shared_task
 def create_news_task(pk):
-    posts = Post.objects.get(id=pk)
-    categories = posts.category.all()
+    post = Post.objects.get(id=pk)
+    categories = post.category.all()
 
 
     for cat in categories:
@@ -26,12 +21,12 @@ def create_news_task(pk):
                 html_content = render_to_string(
                     'post_created_email.html',
                     {
-                        'text': posts.preview(),
+                        'text': post.preview(),
                         'link': f'{settings.SITE_URL}/post/{pk}'
                     }
                 )
                 msg = EmailMultiAlternatives(
-                    subject=posts.title,
+                    subject=post.title,
                     body='',
                     from_email= settings.DEFAULT_FROM_EMAIL,
                     to=[subscriber.email],

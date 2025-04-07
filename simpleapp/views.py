@@ -1,27 +1,19 @@
-from gc import get_objects
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from pyexpat.errors import messages
-from unicodedata import category
-from django_filters.rest_framework import FilterSet, filters
-from django.shortcuts import render, reverse, redirect
-from django.views import View
+from django.shortcuts import render
 from .filters import PostFilter
 from .forms import PostForm
 from .models import Post, Category
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import CreateView
-from django.contrib.auth.models import User
-from django.views.generic.edit import CreateView
-from .forms import BaseRegisterForm
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
-from .tasks import create_news_task
+
 
 class NewsSearch(LoginRequiredMixin, ListView):
     model = Post
