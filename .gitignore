@@ -1,2 +1,5 @@
-.env
-.gitignore
+/.env
+/.gitignore
+/logs/
+/cache_files/
+/db.sqlite3

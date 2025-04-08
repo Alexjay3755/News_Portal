@@ -46,10 +46,10 @@ def notify_about_new_post(sender, instance, **kwargs):
 
 
 
-# @receiver(m2m_changed, sender=PostCategory)
-# def notify_about_new_post(sender, instance, **kwargs):
-#     if kwargs['action'] == 'post_add':
-#         create_news_task.delay(instance.pk)
+@receiver(m2m_changed, sender=PostCategory)
+def notify_about_new_post(sender, instance, **kwargs):
+    if kwargs['action'] == 'post_add':
+        create_news_task.delay(instance.pk)
 
 
 
