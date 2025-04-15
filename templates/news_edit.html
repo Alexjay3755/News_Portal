@@ -1,21 +1,24 @@
 {% extends 'flatpages/default.html' %}
 
 {% block content %}
-<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+{% load i18n %}
+{{ string }}
+
+<h2>{% trans "Страница авторизованного пользователя" %} {{request.user.username}}</h2>
 <!--<div> Здесь может содержаться персональная информация для каждого пользователя </div>-->
 
     <form action="/accounts/logout/" method="post">
     {% csrf_token %}
-        <input type="submit" value="Выйти">
+        <input type="submit" value="{% trans 'Выйти' %}">
     </form>
 
 
-<h1>Создайте или измените пост</h1>
+<h1>{% trans "Создайте или измените пост" %}</h1>
 <hr>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Save" />
+    <input type="submit" value="{% trans 'Save' %}" />
 </form>
 
 {% endblock content %}

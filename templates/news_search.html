@@ -5,6 +5,8 @@
 {% load custom_filter %}
 {% load replace_filter %}
 
+{% load i18n %}
+{{ string }}
 
 {% block title %}
     Новости
@@ -16,27 +18,31 @@
         <button><a href="{% url 'upgrade' %}">Стать автором</a> </button>
     {% endif %}
 
-   <h1>Список новостей:</h1>
-    <hr>
+   <h1>{% trans "Список новостей" %}:</h1>
+
     {% if news_search %}
 
     <form action="" method="get">
        {{ filter.form.as_p  }}
-       <input type="submit" value="Найти" />
+       <input type="submit" value="{% trans 'Найти' %}" />
    </form>
        <table>
            <tr>
-               <td><h4>Заголовок</h4></td>
-               <td><h4>Категории</h4></td>
-               <td><h4>Текст</h4></td>
-               <td><h4>Дата публикации</h4></td>
+
+               <td><h4>{% trans "Заголовок" %}</h4></td>
+
+               <td><h4>{% trans "Категории" %}</h4></td>
+
+               <td><h4>{% trans "Текст" %}</h4></td>
+
+               <td><h4>{% trans "Дата публикации" %}</h4></td>
               </tr>
            {% for post in news_search %}
               <tr>
                   <td>
                        <a href="{% url 'post_detail' post.id %}">{{ post.title | censor }}</a>
-                       <a href="{% url 'news_update' post.id %}"><u>Редактировать</u></a>
-                       <a href="{% url 'news_delete' post.id %}"><u>Удалить</u></a>
+                       <a href="{% url 'news_update' post.id %}"><u>{% trans "Редактировать" %}</u></a>
+                       <a href="{% url 'news_delete' post.id %}"><u>{% trans "Удалить" %}</u></a>
                   </td>
                    <td>
                        {% for category in post.category.all %}

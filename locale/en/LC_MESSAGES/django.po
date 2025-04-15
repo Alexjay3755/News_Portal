@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: .\templates\articles_edit.html:14
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-15 12:09+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\fpages\admin.py:11
+msgid "Advanced options"
+msgstr ""
+
+#: .\simpleapp\models.py:9 .\simpleapp\models.py:64
+msgid "author name"
+msgstr ""
+
+#: .\simpleapp\models.py:35
+msgid "category name"
+msgstr ""
+
+#: .\simpleapp\models.py:48
+msgctxt "help text for MyModel model"
+msgid "This is the help text"
+msgstr "This is the help text"
+
+#: .\templates\articles_edit.html:5
+msgid "Создайте статью"
+msgstr "Сreate an article"
+
+#: .\templates\articles_edit.html:10 .\templates\news_edit.html:21
+msgid "Save"
+msgstr ""
+
+#: .\templates\news_edit.html:7 .\templates\protect\index.html:7
+msgid "Страница авторизованного пользователя"
+msgstr "Authorized user page"
+
+#: .\templates\news_edit.html:12 .\templates\protect\index.html:13
+msgid "Выйти"
+msgstr "Go out"
+
+#: .\templates\news_edit.html:16
+msgid "Создайте или измените пост"
+msgstr "Create or edit a post"
+
+#: .\templates\news_search.html:21
+msgid "Список новостей"
+msgstr "News list"
+
+#: .\templates\news_search.html:27
+msgid "Найти"
+msgstr "Go"
+
+#: .\templates\news_search.html:32 .\templates\post.html:16
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\templates\news_search.html:34
+msgid "Категории"
+msgstr "Categores"
+
+#: .\templates\news_search.html:36 .\templates\post.html:18
+msgid "Текст"
+msgstr "Text"
+
+#: .\templates\news_search.html:38
+msgid "Дата публикации"
+msgstr "Date of publication"
+
+#: .\templates\news_search.html:44
+msgid "Редактировать"
+msgstr "Edit"
+
+#: .\templates\news_search.html:45 .\templates\post_delete.html:10
+msgid "Удалить"
+msgstr "Delete"
+
+#: .\templates\post.html:17
+
+msgid "Дата создания"
+msgstr "Date of creation"
+
+#: .\templates\post.html:35
+msgid "Новостей нет!"
+msgstr "No news!"
+
+#: .\templates\post_delete.html:6
+
+msgid "Удаление публикации"
+msgstr "Deleting a publication"
+
+#: .\templates\post_delete.html:11
+msgid "Delete"
+msgstr ""
+
+#: .\templates\protect\index.html:9
+msgid ""
+"Здесь может содержаться персональная информация для каждого пользователя"
+msgstr "This may contain personal information for each user"
+
+#: .\templates\protect\index.html:17
+msgid "Стать автором"
+msgstr "Become an author"
+
+#~ msgid "Удаление новости"
+#~ msgstr "Delete news"
+
+#~ msgid "Уведомление"
+#~ msgstr "Notification"
+
+#~ msgid "Здравствуйте! Новые статьи за последнюю неделю"
+#~ msgstr "Hello! New articles for the last week"
+
+#~ msgid "Check out my new cool translation"
+#~ msgstr "Check out my new cool translation"

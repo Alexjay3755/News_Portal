@@ -38,6 +38,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,7 +76,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'django.middleware.locale.LocaleMiddleware',
+    'simpleapp.middlewares.TimezoneMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     "allauth.account.middleware.AccountMiddleware",
     # # кеширование всегосайтф целиком
@@ -98,6 +100,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+                'simpleapp.timezone_context.get_timezone',
             ],
         },
     },
@@ -139,15 +142,23 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
-# LANGUAGE_CODE = 'ru'
-#
+LANGUAGE_CODE = 'ru-RU'
 # TIME_ZONE = 'Europe/Moscow'
+
+LANGUAGES = [
+    ('en-us', 'English'),
+    ('ru', 'Русский')
+]
 
 USE_I18N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
 
 
 # Static files (CSS, JavaScript, Images)

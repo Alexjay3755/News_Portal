@@ -1,10 +1,12 @@
-from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.core.cache import cache
+from django.db import models
+from django.utils.translation import gettext as _
+from django.utils.translation import pgettext_lazy # импортируем «ленивый» геттекст с подсказкой
+
 
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, help_text=_("author name"), on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 
     def update_rating(self):
@@ -27,12 +29,15 @@ class Author(models.Model):
     def __str__(self):
         return self.user.username
 
+
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique = True)
+    name = models.CharField(max_length=100,
+                            help_text=_('category name'))  # добавим переводящийся текст подсказку к полю
     subscribers = models.ManyToManyField(User, blank=True, related_name='categories')
 
     def __str__(self):
         return self.name
+
 
 class Post(models.Model):
 
@@ -44,7 +49,7 @@ class Post(models.Model):
         (article, 'Статья')
     ]
 
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, help_text=_("author name"), on_delete=models.CASCADE)
     type_post = models.CharField(max_length=1, choices=options, default=news)
     time_in = models.DateTimeField(auto_now_add=True)
     category = models.ManyToManyField(Category, through='PostCategory')

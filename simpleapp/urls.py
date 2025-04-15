@@ -2,9 +2,10 @@ from django.core.cache import cache
 from django.urls import path
 from django.views.decorators.cache import cache_page
 
+from protect.views import IndexView
 from .views import (
     PostDetail, ArticlesCreate, NewsUpdate, NewsDelete, subscribe,
-    NewsSearch, NewsCreate, ArticlesDelete, ArticlesUpdate, CategoryListView
+    NewsSearch, NewsCreate, ArticlesDelete, ArticlesUpdate, CategoryListView, Index1,
 )
 from django.urls import path
 from .views import upgrade_me
@@ -27,6 +28,7 @@ urlpatterns = [
     path('categories/<int:pk>/', CategoryListView.as_view(), name='category_list'),
     path('categories/<int:pk>/subscribe', subscribe, name='subscribe'),
     path('upgrade/', upgrade_me, name = 'upgrade'),
+    path('time_zone/', Index1.as_view(), name='time_zone'),
 
 ]
 

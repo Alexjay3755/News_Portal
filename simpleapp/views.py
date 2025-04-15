@@ -1,4 +1,6 @@
+from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -13,20 +15,33 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
+from django.shortcuts import render
+from django.views import View
+from .models import Category, Post
+from django.shortcuts import redirect
+from .templatetags.custom_tags import current_time
 
 
-class NewsSearch(LoginRequiredMixin, ListView):
+class NewsSearch(LoginRequiredMixin, ListView, View):
     model = Post
     ordering = '-time_in'
     template_name = 'news_search.html'
     context_object_name = 'news_search'
     paginate_by = 10
 
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = PostFilter(self.request.GET, queryset)
+        return self.filterset.qs
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['is_not_authors'] = not self.request.user.groups.filter(name = 'authors').exists()
         return context
+
 
 
 class PostDetail(DetailView):
@@ -159,3 +174,9 @@ from django.views.decorators.cache import cache_page  # импортируем �
 def my_view(request):
     ...
 
+
+
+class Index1(View):
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect(request.META['HTTP_REFERER'])

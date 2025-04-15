@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: .\templates\articles_edit.html:14
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-15 12:37+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\fpages\admin.py:11
+msgid "Advanced options"
+msgstr "ЭЭЭЭЭЭ"
+
+#: .\simpleapp\models.py:9 .\simpleapp\models.py:64
+msgid "author name"
+msgstr "Имя автора"
+
+#: .\simpleapp\models.py:35
+msgid "category name"
+msgstr "Имя категории"
+
+#: .\simpleapp\models.py:48
+msgctxt "help text for MyModel model"
+msgid "This is the help text"
+msgstr "Текст для чего-то очень важного"
+
+#: .\templates\articles_edit.html:5
+msgid "Создайте статью"
+msgstr ""
+
+#: .\templates\articles_edit.html:10 .\templates\news_edit.html:21
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\templates\main.html:9
+msgid "Simple SignUp/SignIn app"
+msgstr "Быстрая регистрация/Вход в систему"
+
+#: .\templates\news_edit.html:7 .\templates\protect\index.html:7
+msgid "Страница авторизованного пользователя"
+msgstr ""
+
+#: .\templates\news_edit.html:12 .\templates\protect\index.html:13
+msgid "Выйти"
+msgstr ""
+
+#: .\templates\news_edit.html:16
+msgid "Создайте или измените пост"
+msgstr ""
+
+#: .\templates\news_search.html:21
+msgid "Список новостей"
+msgstr ""
+
+#: .\templates\news_search.html:27
+msgid "Найти"
+msgstr ""
+
+#: .\templates\news_search.html:32 .\templates\post.html:17
+msgid "Заголовок"
+msgstr ""
+
+#: .\templates\news_search.html:34
+msgid "Категории"
+msgstr ""
+
+#: .\templates\news_search.html:36 .\templates\post.html:19
+msgid "Текст"
+msgstr ""
+
+#: .\templates\news_search.html:38
+msgid "Дата публикации"
+msgstr ""
+
+#: .\templates\news_search.html:44
+msgid "Редактировать"
+msgstr ""
+
+#: .\templates\news_search.html:45 .\templates\post_delete.html:10
+msgid "Удалить"
+msgstr ""
+
+#: .\templates\post.html:18
+msgid "Дата создания"
+msgstr ""
+
+#: .\templates\post.html:36
+msgid "Новостей нет!"
+msgstr ""
+
+#: .\templates\post_delete.html:6
+msgid "Удаление публикации"
+msgstr ""
+
+#: .\templates\post_delete.html:11
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\templates\protect\index.html:9
+msgid ""
+"Здесь может содержаться персональная информация для каждого пользователя"
+msgstr ""
+
+#: .\templates\protect\index.html:17
+msgid "Стать автором"
+msgstr ""
+
+#~ msgid "Hello world"
+#~ msgstr "Прощай всё"
+
+#~ msgid "Check out my new cool translation"
+#~ msgstr "Непереводимое словосочетание"

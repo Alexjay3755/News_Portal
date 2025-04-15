@@ -12,7 +12,7 @@ class PostFilter(django_filters.FilterSet):
 
        model = Post
        fields = {
-           'title': ['icontains'] ,
+           'title': ['exact'] ,
            'author': ['exact'],
 
-  }
+       }

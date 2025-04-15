@@ -1,16 +1,20 @@
-{% extends "main.html" %}
+{% extends "flatpages/default.html" %}
+
+{% load i18n %}
 
 {% block content %}
-<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
-<div> Здесь может содержаться персональная информация для каждого пользователя </div>
+{{ string }}
+<h2>{% trans "Страница авторизованного пользователя" %} {{request.user.username}}</h2>
+
+<div> {% trans "Здесь может содержаться персональная информация для каждого пользователя" %} </div>
 
     <form action="/accounts/logout/" method="post">
         {% csrf_token %}
-        <input type="submit" value="Выйти">
+        <input type="submit" value="{% trans 'Выйти' %}">
     </form>
 
     {% if is_not_authors %}
-        <button><a href="{% url 'upgrade' %}">Стать автором</a> </button>
+        <button><a href="{% url 'upgrade' %}">{% trans "Стать автором" %}</a> </button>
     {% endif %}
 
 {% endblock %}

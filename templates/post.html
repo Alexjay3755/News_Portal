@@ -1,5 +1,6 @@
 {% extends 'flatpages/default.html' %}
-
+{% load i18n %}
+{{ string }}
 {% load custom_tags %}
 {% load custom_filter %}
 {% load replace_filter %}
@@ -13,9 +14,9 @@ Post
    {% if post %}
        <table>
            <tr>
-               <td><h4>Заголовок</h4></td>
-               <td><h4>Дата создания</h4></td>
-               <td><h4>Текст</h4></td>
+               <td><h4>{% trans "Заголовок" %}</h4></td>
+               <td><h4>{% trans "Дата создания" %}</h4></td>
+               <td><h4>{% trans "Текст" %}</h4></td>
 
 
 
@@ -32,6 +33,6 @@ Post
            </tr>
        </table>
    {% else %}
-       <h2>Новостей нет!</h2>
+       <h2>{% trans "Новостей нет!" %}</h2>
    {% endif %}
 {% endblock content %}
