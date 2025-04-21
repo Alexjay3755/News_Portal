@@ -6,9 +6,12 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from rest_framework import viewsets, permissions
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from .filters import PostFilter
 from .forms import PostForm
-from .models import Post, Category
+from .models import Post, Category, Author, PostCategory, Comment
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import CreateView
 from django.shortcuts import redirect, get_object_or_404
@@ -19,7 +22,32 @@ from django.shortcuts import render
 from django.views import View
 from .models import Category, Post
 from django.shortcuts import redirect
+
+from .serializers import AuthorSerializer, CategorySerializer, PostSerializer, PostCategorySerializer, \
+    CommentSerializer, NewsSerializer, ArticlesSerializer
 from .templatetags.custom_tags import current_time
+
+
+
+class IsAuthenticatedOrReadOnly1(permissions.BasePermission):
+    """Разрешает GET, HEAD, OPTIONS всем, а POST, PUT, DELETE — только авторизованным пользователям."""
+
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:  # GET, HEAD, OPTIONS
+            return True
+        return request.user and request.user.is_authenticated
+
+
+class NewsViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.filter(type_post='N').order_by('-time_in')
+    serializer_class = NewsSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly1]
+
+
+class ArticlesViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.filter(type_post='A').order_by('-time_in')
+    serializer_class = ArticlesSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly1]
 
 
 class NewsSearch(LoginRequiredMixin, ListView, View):
@@ -28,6 +56,7 @@ class NewsSearch(LoginRequiredMixin, ListView, View):
     template_name = 'news_search.html'
     context_object_name = 'news_search'
     paginate_by = 10
+
 
 
     def get_queryset(self):
@@ -41,6 +70,7 @@ class NewsSearch(LoginRequiredMixin, ListView, View):
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['is_not_authors'] = not self.request.user.groups.filter(name = 'authors').exists()
         return context
+
 
 
 
@@ -180,3 +210,34 @@ class Index1(View):
     def post(self, request):
         request.session['django_timezone'] = request.POST['timezone']
         return redirect(request.META['HTTP_REFERER'])
+
+
+from django.shortcuts import render
+from rest_framework import viewsets, permissions
+from education.serializers import *
+from education.models import *
+
+
+class AuthorViewest(viewsets.ModelViewSet):
+   queryset = Author.objects.all()
+   serializer_class = AuthorSerializer
+
+
+class CategoryViewset(viewsets.ModelViewSet):
+   queryset = Category.objects.all()
+   serializer_class = CategorySerializer
+
+
+class PostViewset(viewsets.ModelViewSet):
+   queryset = Post.objects.all()
+   serializer_class = PostSerializer
+
+
+class PostCategoryViewset(viewsets.ModelViewSet):
+   queryset = PostCategory.objects.all()
+   serializer_class = PostCategorySerializer
+
+
+class CommentViewest(viewsets.ModelViewSet):
+   queryset = Comment.objects.all()
+   serializer_class = CommentSerializer

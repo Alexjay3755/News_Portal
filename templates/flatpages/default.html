@@ -17,7 +17,7 @@
 
 
     <style>
-        body {background-color: {% if current_time.hour >= 15 or current_time.hour <= 6 %} darkcyan {% else %} powderblue {% endif %};}
+        body {background-color: {% if current_time.hour >= 16 or current_time.hour <= 6 %} darkcyan {% else %} powderblue {% endif %};}
     </style>
 
     </head>
@@ -52,7 +52,7 @@
         <input type="submit" value="set" id="timezone">
     </form>
 
-<!--    {{ TIME_ZONE }}-->
+
     {{ current_time|timezone:TIME_ZONE }} <!-- Отображаем время в выбранном часовом поясе  -->
 
 <!--    {% for model in models %}-->

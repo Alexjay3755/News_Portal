@@ -1,12 +1,14 @@
 <!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
-{% extends 'flatpages/default.html' %}
 
+{% extends 'flatpages/default.html' %}
 {% load custom_tags %}
 {% load custom_filter %}
 {% load replace_filter %}
 
 {% load i18n %}
 {{ string }}
+
+
 
 {% block title %}
     Новости

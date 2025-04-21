@@ -1,0 +1,579 @@
+openapi: 3.0.2
+info:
+  title: 'Много всего'
+  version: '0.1'
+paths:
+  /schools/:
+    get:
+      operationId: listSchools
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/School'
+          description: ''
+      tags:
+      - schools
+    post:
+      operationId: createSchool
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/School'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/School'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/School'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/School'
+          description: ''
+      tags:
+      - schools
+  /schools/{id}/:
+    get:
+      operationId: retrieveSchool
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this school.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/School'
+          description: ''
+      tags:
+      - schools
+    put:
+      operationId: updateSchool
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this school.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/School'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/School'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/School'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/School'
+          description: ''
+      tags:
+      - schools
+    patch:
+      operationId: partialUpdateSchool
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this school.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/School'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/School'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/School'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/School'
+          description: ''
+      tags:
+      - schools
+    delete:
+      operationId: destroySchool
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this school.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - schools
+  /sclasses/:
+    get:
+      operationId: listSClass
+      description: ''
+      parameters:
+      - name: grade
+        required: false
+        in: query
+        description: grade
+        schema:
+          type: string
+      - name: school_id
+        required: false
+        in: query
+        description: school_id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SClass'
+          description: ''
+      tags:
+      - sclasses
+    post:
+      operationId: createSClass
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SClass'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SClass'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SClass'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SClass'
+          description: ''
+      tags:
+      - sclasses
+  /sclasses/{id}/:
+    get:
+      operationId: retrieveSClass
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this s class.
+        schema:
+          type: string
+      - name: grade
+        required: false
+        in: query
+        description: grade
+        schema:
+          type: string
+      - name: school_id
+        required: false
+        in: query
+        description: school_id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SClass'
+          description: ''
+      tags:
+      - sclasses
+    put:
+      operationId: updateSClass
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this s class.
+        schema:
+          type: string
+      - name: grade
+        required: false
+        in: query
+        description: grade
+        schema:
+          type: string
+      - name: school_id
+        required: false
+        in: query
+        description: school_id
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SClass'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SClass'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SClass'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SClass'
+          description: ''
+      tags:
+      - sclasses
+    patch:
+      operationId: partialUpdateSClass
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this s class.
+        schema:
+          type: string
+      - name: grade
+        required: false
+        in: query
+        description: grade
+        schema:
+          type: string
+      - name: school_id
+        required: false
+        in: query
+        description: school_id
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SClass'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SClass'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SClass'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SClass'
+          description: ''
+      tags:
+      - sclasses
+    delete:
+      operationId: destroySClass
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this s class.
+        schema:
+          type: string
+      - name: grade
+        required: false
+        in: query
+        description: grade
+        schema:
+          type: string
+      - name: school_id
+        required: false
+        in: query
+        description: school_id
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - sclasses
+  /students/:
+    get:
+      operationId: listStudents
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - students
+    post:
+      operationId: createStudent
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - students
+  /students/{id}/:
+    get:
+      operationId: retrieveStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - students
+    put:
+      operationId: updateStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - students
+    patch:
+      operationId: partialUpdateStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Student'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+          description: ''
+      tags:
+      - students
+    delete:
+      operationId: destroyStudent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this student.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - students
+components:
+  schemas:
+    School:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 64
+        url:
+          type: string
+          readOnly: true
+      required:
+      - name
+    SClass:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        grade:
+          type: integer
+        url:
+          type: string
+          readOnly: true
+        schools:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            name:
+              type: string
+              maxLength: 64
+            url:
+              type: string
+              readOnly: true
+          required:
+          - name
+          readOnly: true
+        school_id:
+          type: integer
+          writeOnly: true
+      required:
+      - grade
+      - school_id
+    Student:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 64
+        url:
+          type: string
+          readOnly: true
+
+
+        sclass:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            grade:
+              type: integer
+            url:
+              type: string
+              readOnly: true
+
+
+            school:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  readOnly: true
+                name:
+                  type: string
+                  maxLength: 64
+                url:
+                  type: string
+                  readOnly: true
+
+
+              required:
+              - name
+              readOnly: true
+
+            school_id:
+              type: integer
+              writeOnly: true
+
+          required:
+          - grade
+          - school_id
+          readOnly: true
+
+        class_id:
+          type: integer
+          writeOnly: true
+
+    required:
+      - name
+      - class_id

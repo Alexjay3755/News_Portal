@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -27,7 +29,7 @@ SECRET_KEY = 'django-insecure-8z99w*c+5ka#bchqmxonlojd3skyex!r1ld1&b$9thf@amjjre
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -50,11 +52,14 @@ INSTALLED_APPS = [
     # подключаем ещё приложения
     'sign',
     'fpages',
-    # 'simpleapp',
+
     'simpleapp.apps.SimpleappConfig',
     'django_filters',
 
     'django_apscheduler',
+    'education',
+    'rest_framework',
+
 
     'allauth',
     'allauth.account',
@@ -143,9 +148,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'ru-RU'
-# TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Europe/Moscow'
 
 LANGUAGES = [
     ('en-us', 'English'),
@@ -161,6 +166,20 @@ LOCALE_PATHS = [
 ]
 
 
+REST_FRAMEWORK = {
+   'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+   'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+   'PAGE_SIZE': 10,
+   'DEFAULT_PERMISSION_CLASSES': [
+       'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+   ],
+    
+
+}
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -171,8 +190,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+STATIC_ROOT ='.'
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static",
 ]
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -346,3 +367,6 @@ LOGGING = {
         },
     },
 }
+
+
+

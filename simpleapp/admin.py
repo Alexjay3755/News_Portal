@@ -30,7 +30,7 @@ class PostAdmin1(admin.ModelAdmin):
     search_fields = ('title', 'category__name')  # тут всё очень похоже на фильтры из запросов в базу
     actions = [nullfy_rating]  # добавляем действия в список
 
-
+from django.contrib import admin
 admin.site.register(Post, PostAdmin1)
 admin.site.register(Author)
 admin.site.register(Category)
